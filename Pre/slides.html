@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="Slides_files/libs/clipboard/clipboard.min.js"></script>
-<script src="Slides_files/libs/quarto-html/tabby.min.js"></script>
-<script src="Slides_files/libs/quarto-html/popper.min.js"></script>
-<script src="Slides_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="Slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="Slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="Slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="Slides_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="slides_files/libs/clipboard/clipboard.min.js"></script>
+<script src="slides_files/libs/quarto-html/tabby.min.js"></script>
+<script src="slides_files/libs/quarto-html/popper.min.js"></script>
+<script src="slides_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="slides_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.537">
 
   <meta name="author" content="Thomas Haase">
-  <title>Spearmans Rangkorrelationskoeffizient</title>
+  <title>PRE-Maße (Lambda, Eta-Quadrat)</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="Slides_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="Slides_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -30,11 +30,11 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="Slides_files/libs/revealjs/dist/theme/quarto.css">
-  <link href="Slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="Slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="Slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="Slides_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto.css">
+  <link href="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="slides_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -326,7 +326,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Spearmans Rangkorrelationskoeffizient</h1>
+  <h1 class="title">PRE-Maße (Lambda, Eta-Quadrat)</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -337,538 +337,503 @@ Thomas Haase
 </div>
 
 </section>
-<section id="warum" class="title-slide slide level1 center">
-<h1>Warum?</h1>
-<p>Ziel: Zusammenhänge zwischen Variablen herstellen</p>
+<section id="pre---maße" class="title-slide slide level1 center">
+<h1>PRE - Maße</h1>
 <div>
 <ul>
-<li class="fragment">für nominal Variablen: Kreuztabelle</li>
-<li class="fragment"><strong>für ordinale Variablen: Spearmans <span class="math inline">\(\rho\)</span></strong></li>
-<li class="fragment">für metrische Variablen: ? (nächste Sitzung)</li>
+<li class="fragment"><p><strong>P</strong>roportional <strong>R</strong>eduction of <strong>E</strong>rror</p></li>
+<li class="fragment"><p>Maß für Zusammenhänge von Variablen</p></li>
+</ul>
+<hr>
+<ul>
+<li class="fragment"><p>nominal &amp; ordinal: <span class="math inline">\(\lambda\)</span> (Lambda)</p></li>
+<li class="fragment"><p>nominal &amp; metrisch: <span class="math inline">\(\eta^2\)</span> (Eta-Quadrat)</p></li>
+<li class="fragment"><p><strong>Wie stellt ein PRE-Maß einen Zusammenhang fest?</strong></p></li>
 </ul>
 </div>
-<aside class="notes">
-<p>Große Frage: Wofür brauchen wir Spearmans Rho?</p>
-<p>Wie können wir für nominale Variablen Zusammenhänge herstellen? ==&gt; Letzte Sitzung hatten wir bereits die Kreuztabelle kennengelernt. Wollen wir die nochmal wiederholen?</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-
-<section id="spearmans-rho" class="title-slide slide level1 center">
-<h1>Spearmans Rho</h1>
-<div>
-<ul>
-<li class="fragment"><span class="math inline">\(\rho = 1 - \frac{6 \cdot \sum^{n}_{i=1}{d^2_i}}{n \cdot (n^2-1)}\)</span></li>
-<li class="fragment"><span class="math inline">\(d_i  = R(x_i) - R(y_i)~~~\textrm{(Differenz der Rangplätze)}\)</span></li>
-<li class="fragment"><span class="math inline">\(-1 &lt; \rho &lt; 1\)</span></li>
-</ul>
-</div>
-<aside class="notes">
-<ul>
-<li><p>die formel ist eine modifikation der formel, für metrische variablen, die wir nächste woche lernen ==&gt; für uns erstmal wichtig: anwenden</p></li>
-<li><p>Strategie: wir weisen jedem wert einer variablen einen rang zu und berechnen die differenz.</p>
-<p>durch das benutzen der formel vergleichen wir wie stark niedrige ränge zusammen mit anderen niedrigen rängen vorkommen und umgekehrt</p></li>
-<li><p>rho liegt immer zwischen -1 und 1 und zeigt so negative und positive zusammenhänge an</p></li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 
 <section>
+<section id="intuition-pre-maß-formel" class="title-slide slide level1 center">
+<h1>Intuition PRE-Maß Formel</h1>
+<p><span class="math display">\[\text{PRE} = \frac{\text{E}_1 - \text{E}_2}{\text{E}_1}\]</span> <span class="math inline">\(\text{E}_1:\)</span> Fehler(<strong>E</strong>RROR) der Vorhersage von Y ohne X zu kennen</p>
+<p><span class="math inline">\(\text{E}_2:\)</span> Fehler(<strong>E</strong>RROR) der Vorhersage von Y mit der Kenntnis von X</p>
+<div>
+<ul>
+<li class="fragment"><span class="math inline">\(\Rightarrow\)</span> sehr abstrakt, daher jetzt Beispiel:</li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Wir möchten vorhersagen wie viele Personen die Klausur bestehen werden. Bestehen/Nicht-Bestehen ist daher die unabhängige-Y Variable.</p>
+<p>Wenn wir wissen wie viele Personen letztes Semester bestanden haben, können wir am besten die Prozentzahl ausrechnen und davon ausgehen, dass dieses Semester wieder so viel Prozent bestehen werden.</p>
+<p><span class="math display">\[
+\text{Y(bestanden)} = \frac{\text{Personen die bestanden haben}}{\text{Personen insgesamt in VL}} = \frac{60}{80} = 0,75
+\]</span></p>
+</section>
+<section class="slide level2">
+
+<p>Der Begriff <em>“Messfehler”</em> ist die Wahrscheinlichkeit, mit der wir einen Fehler begehen könnten.</p>
+<blockquote>
+<p><strong>Im Beispiel:</strong><br> <span class="math inline">\(\text{E}_1 = 1 - 0,75 = 0,25\)</span> <br> Also die Wahrscheinlichkeit, dass es genau anders ist als wir vorhersagen.</p>
+</blockquote>
+<p>Wir wissen, dass ein Student der die Klausur schreibt sehr wahrscheinlich zu 75% besteht, können uns aber nicht ganz sicher sein, weil er auch zu den wenigen 25% gehören könnte, die nicht bestehen. Diese Unsicherheit ist die Wahrscheinlichkeit des Fehlers, den wir begehen, wenn wir eine Prognose von 75% treffen.</p>
+</section>
+<section class="slide level2">
+
+<p>PRE bedeutet, dass wir nun wissen wollen ob der mögliche Messfehler kleiner wird, wenn wir die Vorhersage genauer machen indem wir noch eine andere Variable in die Vorhersage mit einbeziehen. Ein kleinerer Messfehler bedeutet eine bessere Vorhersage.</p>
+<p>Die X-Variable mit der wir die Vorhersage verbessern möchte istin unserem Fall der Besuch des Tutoriums. Wenn wir diese Variable in das Modell mit einbeziehen und die Vorhersage genauer wird, dann wissen wir, dass ein Zusammenhang bestehen muss. Der Wert des PRE-Maß größer.</p>
+</section>
+<section class="slide level2">
+
+<p>Von den Tutoriumsbesuchern haben 90% bestanden.</p>
+<p><span class="math display">\[
+\text{E}_2 = 1 - 0,9 = 0,1
+\]</span></p>
+<p><span class="math display">\[
+\text{PRE} = \frac{0,25 - 0,1}{0,25} = 0,6
+\]</span> Die Vorhersage verbessert sich also.</p>
+</section>
+<section id="treffen-wir-doch-mal-eine-vorhersage" class="slide level2">
+<h2>Treffen wir doch mal eine Vorhersage:</h2>
+</section></section>
+<section id="vorhersage-ohne-x" class="title-slide slide level1 center">
+<h1>Vorhersage ohne X</h1>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Bestanden</th>
+<th>Nicht-Bestanden</th>
+<th>Gesamt</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>60</td>
+<td>20</td>
+<td>80</td>
+</tr>
+</tbody>
+</table>
+<p><br> <br> <span class="math display">\[
+\text{Y(bestanden)} = \frac{60}{80} = 0,75
+\]</span></p>
+</section>
+
+<section>
+<section id="vorhersage-mit-x" class="title-slide slide level1 center">
+<h1>Vorhersage mit X</h1>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Bestanden</th>
+<th>Nicht-Bestanden</th>
+<th>Gesamt</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Tutorium besucht</strong></td>
+<td>54</td>
+<td>2</td>
+<td>56</td>
+</tr>
+<tr class="even">
+<td><strong>Tutorium nicht besucht</strong></td>
+<td>6</td>
+<td>18</td>
+<td>24</td>
+</tr>
+<tr class="odd">
+<td><strong>Gesamt</strong></td>
+<td>60</td>
+<td>20</td>
+<td>80</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+\text{Y(bestanden)} = \frac{54}{56} = 0,96
+\]</span></p>
+</section>
+<section class="slide level2">
+
+<p>Mit der neuen Variable können wir vorhersagen, dass 96% der Tutoriumsbesucher bestehen werden. Unsere vorhersage wird durch die zusätzliche Information sehr genau und der Messfehler sehr klein.</p>
+</section></section>
+<section>
+<section id="berechnung-auch-ohne-prozente-möglich" class="title-slide slide level1 center">
+<h1>Berechnung auch ohne Prozente möglich!</h1>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Bestanden</th>
+<th>Nicht-Bestanden</th>
+<th>Gesamt</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Tutorium besucht</strong></td>
+<td>54</td>
+<td>2</td>
+<td>56</td>
+</tr>
+<tr class="even">
+<td><strong>Tutorium nicht besucht</strong></td>
+<td>6</td>
+<td>18</td>
+<td>24</td>
+</tr>
+<tr class="odd">
+<td><strong>Gesamt</strong></td>
+<td>60</td>
+<td>20</td>
+<td>80</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(E_1\)</span> sind 20, denn 60 ist der beste Schätzer und wir können 20 danebenliegen</p>
+</section>
+<section class="slide level2">
+
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Bestanden</th>
+<th>Nicht-Bestanden</th>
+<th>Gesamt</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Tutorium besucht</strong></td>
+<td>54</td>
+<td>2</td>
+<td>56</td>
+</tr>
+<tr class="even">
+<td><strong>Tutorium nicht besucht</strong></td>
+<td>6</td>
+<td>18</td>
+<td>24</td>
+</tr>
+<tr class="odd">
+<td><strong>Gesamt</strong></td>
+<td>60</td>
+<td>20</td>
+<td>80</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(E_2\)</span> sind <span class="math inline">\(2 + 6 = 8\)</span>, denn durch die neue Variable können wir doppelt daneben liegen</p>
+<p><span class="math display">\[
+\text{PRE} = \frac{20 - 8}{20} = 0,6
+\]</span></p>
+</section></section>
+<section id="nochmal-mit-prozenten" class="title-slide slide level1 center">
+<h1>Nochmal mit Prozenten</h1>
+<p><span class="math display">\[
+\text{E}_1 = 1 - \frac{60}{80} = 0,25
+\]</span> <span class="math display">\[
+\text{E}_2 = 1 - \frac{54}{56} = 0,1
+\]</span> <span class="math display">\[
+\text{PRE} = \frac{0,25 - 0,1}{0,25} = 0,6
+\]</span></p>
+</section>
+
+<section id="jetzt-kann-man-die-formel-verstehen" class="title-slide slide level1 center">
+<h1>Jetzt kann man die Formel verstehen</h1>
+<p><span class="math display">\[
+\text{PRE} = \frac{\text{E}_1 - \text{E}_2}{\text{E}_1}
+\]</span> <span class="math inline">\(\text{E}_1 - \text{E}_2\)</span> ist der Abstand zwischen den beiden Messfehlern. Indem dieser durch <span class="math inline">\(\text{E}_1\)</span> geteilt wird, wird berechnet wie viel größer der dieser Unterschied im Vergleich zu <span class="math inline">\(\text{E}_1\)</span> ist.</p>
+</section>
+
+<section id="das-waren-alles-schon-beispielrechnungen-für-lambda-lambda" class="title-slide slide level1 center">
+<h1>Das waren alles schon Beispielrechnungen für <span class="math inline">\(\lambda\)</span> (Lambda)!</h1>
+
+</section>
+
+<section id="eta2---eta-quadrat" class="title-slide slide level1 center">
+<h1><span class="math inline">\(\eta^2\)</span> - Eta-Quadrat</h1>
+<div>
+<ul>
+<li class="fragment"><span class="math inline">\(\eta^2\)</span> ist das gleiche wie <span class="math inline">\(\lambda\)</span>, nur dass es für die Varianzanalyse verwendet wird.</li>
+<li class="fragment">Varianzanalyse meint in dem Fall, dass in einer Gruppe statt ein bestimmter Wert, die Varianz der Werte betrachtet wird.</li>
+<li class="fragment">Je kleiner die Varianz ist, desto besser ist die Vorhersage.<br>
+</li>
+</ul>
+</div>
+</section>
+
 <section id="beispiel" class="title-slide slide level1 center">
 <h1>Beispiel</h1>
-<table>
-<thead>
-<tr class="header">
-<th>ID</th>
-<th>Anzahl Tutoriumsbesuche</th>
-<th>Klausurnote</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>0</td>
-<td>8</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>3</td>
-<td>9</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>0</td>
-<td>6</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>1</td>
-<td>5</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>12</td>
-<td>12</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>10</td>
-<td>13</td>
-</tr>
-</tbody>
-</table>
-<aside class="notes">
-<p>Wir gehen von folgender Tabelle aus:</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section class="slide level2">
-
-<div class="columns">
-<div class="column" style="width:40%;">
-
-</div><div class="column" style="width:60%;">
-<table>
-<thead>
-<tr class="header">
-<th>ID</th>
-<th>Anzahl Tutoriumsbesuche</th>
-<th>Klausurnote</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>0</td>
-<td>8</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>3</td>
-<td>9</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>0</td>
-<td>6</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>1</td>
-<td>5</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>12</td>
-<td>12</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>10</td>
-<td>13</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
-<div class="columns">
-<div class="column" style="width:40%;">
+<p>Wir möchten wissen, ob die Information wer das Tutorium besucht hat die Vorhersage der Klausurnote verbessert.</p>
 <div>
-<ol type="1">
-<li class="fragment">Ränge zuweisen <small>(kleinster Wert = 1, <br>zweitkleinster Wert = 2, …)</small></li>
-<li class="fragment">wenn ein Rang 2x vorkommt wird der Durchschnitt gebildet <small>(z.B. 0 hat Rang 1 und 2, also 1,5)</small></li>
-</ol>
+<ul>
+<li class="fragment"><span class="math display">\[\eta^2 = \frac{\text{QS}_{gesamt} - \text{QS}_{innerhalb}}{\text{QS}_{gesamt}}\]</span></li>
+<li class="fragment"><span class="math inline">\(\text{QS} = \sum(\text{Wert}_i - \text{Mittelwert})^2\)</span><br>Gibt an wie ungenau die Vorhersage ist.<br> <em>“Wie weit liegt man insgesamt daneben”</em></li>
+</ul>
 </div>
-</div><div class="column" style="width:60%;">
+</section>
+
+<section id="vorhersage-ohne-x-1" class="title-slide slide level1 center">
+<h1>Vorhersage ohne X</h1>
+<div class="columns">
+<div class="column" style="width:40%;">
 <table>
 <thead>
 <tr class="header">
 <th>ID</th>
-<th>Ränge der Anzahl Tutoriumsbesuche</th>
-<th>Ränge der Klausurnote</th>
+<th>Klausurnote y</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>1</td>
-<td>1,5</td>
-<td>3</td>
+<td>12</td>
 </tr>
 <tr class="even">
 <td>2</td>
-<td>3</td>
-<td>4</td>
+<td>5</td>
 </tr>
 <tr class="odd">
 <td>3</td>
-<td>1,5</td>
-<td>2</td>
+<td>14</td>
 </tr>
 <tr class="even">
 <td>4</td>
-<td>2</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:60%;">
+<p>Beste Vorhersage welche Note eine Person schreiben wird: <span class="math inline">\(\bar{y} = \frac{12 + 5 + 14 + 7 + 6 + 10}{6}\)</span></p>
+<p><span class="math inline">\(~~~= \frac{54}{6} = 9\)</span></p>
+<hr>
+<p>Fehler bzw. Abweichung: <span class="math inline">\(\text{QS}_{ges} = (12 - 9)^2 + (5 - 9)^2 + (14 - 9)^2\)</span><br> <span class="math inline">\(~~~~~~~~~~+ (7 - 9)^2 + (6 - 9)^2 + (10 - 9)^2\)</span><br> <span class="math inline">\(~~~~~~~~~~= 64\)</span></p>
+</div>
+</div>
+</section>
+
+<section id="vorhersage-mit-x-1" class="title-slide slide level1 center">
+<h1>Vorhersage mit X</h1>
+<div class="columns">
+<div class="column" style="width:40%;">
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Klausurnote y</th>
+<th>Tutorium besucht</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
 <td>1</td>
+<td>12</td>
+<td>ja</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>5</td>
+<td>nein</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>14</td>
+<td>ja</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>7</td>
+<td>nein</td>
 </tr>
 <tr class="odd">
 <td>5</td>
-<td>5</td>
-<td>5</td>
+<td>6</td>
+<td>nein</td>
 </tr>
 <tr class="even">
 <td>6</td>
-<td>4</td>
-<td>6</td>
+<td>10</td>
+<td>ja</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<aside class="notes">
-<p>Nun werden den Werte Ränge zugewiesen, also vom kleinsten Wert bis zum größten Wert durchnummeriert. Sollte ein Wert doppelt vorkommen, wird beiden der Durchschnitt des Ranges zugeordnet. 0 hat Rang 1, weil 0 zweimal vorkommt bilden wir den Durchschnitt der Ränge. Einer Null wird also Rang 1 zugeordnet, der anderen Rang 2 und der Durchschnitt ist 1,5. Die 1,5 wird beiden zugeordnet.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
-<section class="slide level2">
 
+<section id="tutorium-besucht" class="title-slide slide level1 center">
+<h1>Tutorium besucht</h1>
 <div class="columns">
-<div class="column" style="width:40%;">
-<ol type="1">
-<li>Ränge zuweisen <small>(kleinster Wert = 1, <br>zweitkleinster Wert = 2, …)</small></li>
-<li>wenn ein Rang 2x vorkommt wird der Durchschnitt gebildet <small>(z.B. 0 hat Rang 1 und 2, also 1,5)</small></li>
-<li>Differenz der Ränge (<span class="math inline">\(d_i\)</span>) berechnen <br> <small>3 - 1,5 = 1,5 <br> 4 - 3 = 1 <br> …</small></li>
-</ol>
-</div><div class="column" style="width:60%;">
+<div class="column" style="width:50%;">
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Klausurnote y</th>
+<th>Tutorium besucht</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>12</td>
+<td>ja</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>14</td>
+<td>ja</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>10</td>
+<td>ja</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:50%;">
+<p>Beste Vorhersage welche Note eine Person schreiben wird: <span class="math inline">\(\bar{y}_{ja} = \frac{12 + 14 + 10}{3} = 12\)</span></p>
+<p><span class="math inline">\(\text{QS}_{ja} = (12-12)^2 + (14-12)^2\)</span> <span class="math inline">\(~~~~~~~~~+ (10-12)^2 = 8\)</span></p>
+</div>
+</div>
+</section>
+
+<section id="tutorium-nicht-besucht" class="title-slide slide level1 center">
+<h1>Tutorium nicht besucht</h1>
+<div class="columns">
+<div class="column" style="width:50%;">
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Klausurnote y</th>
+<th>Tutorium besucht</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2</td>
+<td>5</td>
+<td>nein</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>7</td>
+<td>nein</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>6</td>
+<td>nein</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:50%;">
+<p>Beste Vorhersage welche Note eine Person schreiben wird: <span class="math inline">\(\bar{y}_{nein} = \frac{5 + 7 + 6}{3} = 6\)</span></p>
+<p><span class="math inline">\(\text{QS}_{nein} = (5-6)^2 + (7-6)^2\)</span> <span class="math inline">\(~~~~~~~~~+ (6-6)^2 = 2\)</span></p>
+</div>
+</div>
+</section>
+
+<section id="eta-quadrat" class="title-slide slide level1 center">
+<h1>Eta-Quadrat</h1>
+<div>
+<ul>
+<li class="fragment"><p><span class="math inline">\(\text{QS}_{innerhalb} = \text{QS}_{ja} + \text{QS}_{nein}\)</span><br> <span class="math inline">\(~~~~~~~~~~~~~~~~~~= 8 + 2 = 10\)</span></p></li>
+<li class="fragment"><p><span class="math inline">\(\eta^2 = \frac{\text{QS}_{gesamt} - \text{QS}_{innerhalb}}{\text{QS}_{gesamt}} = \frac{64 - 10}{64} = 0,84\)</span></p></li>
+<li class="fragment"><p>Der Schätzfehler kann um 84% verringert werden, wenn die Information über den Tutoriumsversuch mitbeachtet wird.</p></li>
+</ul>
+</div>
+</section>
+
+<section id="übung---lambda" class="title-slide slide level1 center">
+<h1>Übung - <span class="math inline">\(\lambda\)</span></h1>
+<p>Echte Werte aus dem <a href="https://ess.sikt.no/en/datafile/b2b0bf39-176b-4eca-8d26-3c05ea83d2cb/270?tab=0&amp;elements=%5B%2237cbd07f-fa5d-4755-849f-af2099ee6cc4/9%22,%222cd40950-6e2c-42e9-8577-934da1c50972/2%22%5D">European Social Survey 2018</a></p>
+<p><strong>Berechne und interpretiere Lambda</strong><br> Abhängige Variable: had a paid job<br></p>
 <table>
 <colgroup>
-<col style="width: 5%">
-<col style="width: 50%">
-<col style="width: 33%">
-<col style="width: 10%">
+<col style="width: 32%">
+<col style="width: 23%">
+<col style="width: 32%">
+<col style="width: 11%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>ID</th>
-<th>Ränge der Anzahl Tutoriumsbesuche</th>
-<th>Ränge der Klausurnote</th>
-<th><span class="math inline">\(d_i\)</span></th>
+<th></th>
+<th>had a paid job</th>
+<th>never had a paid job</th>
+<th>GESAMT</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>1</td>
-<td>1,5</td>
-<td>3</td>
-<td>1,5</td>
+<td>männlich</td>
+<td>3414</td>
+<td>602</td>
+<td>4016</td>
 </tr>
 <tr class="even">
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>1</td>
+<td>weiblich</td>
+<td>4336</td>
+<td>926</td>
+<td>5262</td>
 </tr>
 <tr class="odd">
-<td>3</td>
-<td>1,5</td>
-<td>2</td>
-<td>0,5</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>2</td>
-<td>1</td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>5</td>
-<td>5</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>4</td>
-<td>6</td>
-<td>2</td>
+<td>GESAMT</td>
+<td>7750</td>
+<td>1528</td>
+<td>9278</td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
 </section>
-<section class="slide level2">
 
-<p><span class="math inline">\(\rho = 1 - \frac{6 \cdot \sum^{n}_{i=1}{d^2_i}}{n \cdot (n^2-1)}\)</span></p>
-<div class="fragment">
-<p><span class="math inline">\(\textrm{Summe ausformulieren} \rightarrow \textrm{Ränge einsetzen} \\ = 1 - \frac{6 \cdot (1,5^2 + 1^2 + 0,5^2 + 1^2 + 0^2 + 2^2)}{n \cdot (n^2-1)}\)</span></p>
-</div>
-<div class="fragment">
-<p><span class="math inline">\(\textrm{Ränge zusammenrechnen und n einsetzen}\\ = 1 - \frac{6 \cdot (2,25 + 1 + 0,25 + 1 + 4)}{6 \cdot (6^2-1)}\)</span></p>
-</div>
-<div class="fragment">
-<p><span class="math inline">\(= 1 - \frac{6 \cdot 8,5}{6 \cdot (36-1)}\)</span></p>
-</div>
-<div class="fragment">
-<p><span class="math inline">\(= 1 - \frac{51}{6 \cdot 35}~~=~~1 - \frac{51}{210}~~=~~1 - 0,243 ~~=~~0,757\)</span></p>
-</div>
-</section></section>
-<section>
-<section id="übung" class="title-slide slide level1 center">
-<h1>Übung</h1>
-
-</section>
-<section class="slide level2">
-
-<div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Aufgabe</a></li><li><a href="#tabset-1-2">Lösung - S.1</a></li><li><a href="#tabset-1-3">Lösung - S.2</a></li><li><a href="#tabset-1-4">Lösung - S.3</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1">
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><font size="6">In einer kleinen Studie gaben 5 Personen ihre Vorlieben für zwei verschiedene Musikgenres ab. Dabei wurde eine Likertskala mit 1 = “mag ich gar nicht” bis 5 = “mag ich sehr” verwendet.</font></p>
-<hr>
-<p><strong>Frage:</strong> Gibt es einen Zusammenhang zwischen den Musikgenres?</p>
-</div><div class="column" style="width:50%;">
-<table>
-<thead>
-<tr class="header">
-<th>Person</th>
-<th>Genre A</th>
-<th>Genre B</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>3</td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>2</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>5</td>
-<td>5</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>1</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>4</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>3</td>
-<td>2</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div id="tabset-1-2">
-<div class="columns">
-<div class="column" style="width:30%;">
-<ol type="1">
-<li>Ränge zuweisen</li>
-</ol>
-</div><div class="column" style="width:70%;">
-<table>
-<thead>
-<tr class="header">
-<th>Person</th>
-<th>Genre A</th>
-<th>Genre B</th>
-<th>Rang Genre A</th>
-<th>Rang Genre B</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>3</td>
-<td>4</td>
-<td>3.5</td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>2</td>
-<td>2</td>
-<td>2</td>
-<td>2.5</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>5</td>
-<td>5</td>
-<td>5</td>
-<td>5</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>1</td>
-<td>3</td>
-<td>1</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>4</td>
-<td>1</td>
-<td>4</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>3</td>
-<td>2</td>
-<td>3.5</td>
-<td>2.5</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div id="tabset-1-3">
-<div class="columns">
-<div class="column" style="width:30%;">
-<ol type="1">
-<li>Ränge zuweisen</li>
-<li>Differenz der Ränge berechnen</li>
-</ol>
-</div><div class="column" style="width:70%;">
-<table>
-<thead>
-<tr class="header">
-<th>Person</th>
-<th>Rang Genre A</th>
-<th>Rang Genre B</th>
-<th>Rang Differenz</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>3.5</td>
-<td>4</td>
-<td>-0.5</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>2</td>
-<td>2.5</td>
-<td>-0.5</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>5</td>
-<td>5</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>1</td>
-<td>3</td>
-<td>-3</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>4</td>
-<td>1</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>3.5</td>
-<td>2.5</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div id="tabset-1-4">
-<p><span class="math inline">\(\rho = 1 - \frac{6 \cdot \sum^{n}_{i=1}{d^2_i}}{n \cdot (n^2-1)}\)</span></p>
-<p><span class="math inline">\(= 1 - \frac{6 \cdot ((-0.5)^2 + (-0.5)^2 + 0^2 + (-3)^2 + 3^2 + 1^2)}{n \cdot (n^2-1)}\)</span></p>
-<p><span class="math inline">\(= 1 - \frac{6 \cdot (0.25     + 0.25     + 0   + 9      + 9   + 1)}{6 \cdot (6^2-1)}\)</span></p>
-<p><span class="math inline">\(= 1 - \frac{117}{6 \cdot (36-1)}\)</span></p>
-<p><span class="math inline">\(= 1 - \frac{117}{6 \cdot 35}\)</span> <span class="math inline">\(= 1 - \frac{117}{210}\)</span> <span class="math inline">\(= 1 - 0.557\)</span> <span class="math inline">\(= 0.443\)</span></p>
-<p>Mittlere positive Korrelation ==&gt; <em>“Wer Genre A mag, mag wahrscheinlich auch Genre B”</em></p>
-</div>
-</div>
-</div>
+<section id="lösung---lambda" class="title-slide slide level1 center">
+<h1>Lösung - <span class="math inline">\(\lambda\)</span></h1>
+<p><span class="math inline">\(\text{E}_1 = 1 - \frac{7750}{9278} = 0,16\)</span></p>
+<p><span class="math inline">\(\text{E}_2 = (\frac{4016}{9278}(1-\frac{3414}{4016})) + (\frac{5262}{9278}(1-\frac{4336}{5262}))\)</span><br> <span class="math inline">\(~~~~~= 0,16\)</span></p>
+<p><span class="math inline">\(\text{PRE} = \frac{\text{E}_1 - \text{E}_2}{\text{E}_1} = \frac{0,16 - 0,16}{0,16} = 0\)</span></p>
+<p>Keine Verbesserung der Vorhersage durch die Information über das Geschlecht.</p>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="Slides_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="slides_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="Slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="Slides_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="Slides_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="Slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="Slides_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="Slides_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="Slides_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="Slides_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="Slides_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
