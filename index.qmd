@@ -1,11 +1,12 @@
 ---
-title: "Statistik 1 - Aufgaben"
-subtitle: "Übungsaufgaben aus dem Tutorium"
+title: "Zusammenfassung Statistik 1"
+subtitle: 'Tutorium zur Vorlesung "Statistik für Sozialwissenschaften I" von Prof. Dr. Simone Abendschön'
 author: "Thomas Haase"
-date: 2024-01-16
+date: 2024-04-25
 
 toc: true
 toc-title: Inhaltsverzeichnis
+toc-depth: 4
 toc-expand: 1
 number-sections: false
 number-depth: 2
@@ -14,8 +15,10 @@ number-depth: 2
 format:
   html:
     theme: cosmo
-    embed-resources: true
+#    embed-resources: true
 ---
+
+
 
 # VL 1 Grundlegende Begriffe
 ## Was ist Statistik
@@ -56,8 +59,11 @@ format:
 
 ## Häufigkeiten
 **f**requenz und **H**äufigkeit
+
 - Absolute Häufigkeit: $Hx_k = fx_k$
+
 - Relative Häufigkeit: $hx_k = \frac{fx_k}{n}$
+
 - prozentuale Häufigkeit: $\text{Prozente}=hx_k\cdot100$
 
 ### Kumulierte Häufigkeit
@@ -332,40 +338,95 @@ $$d_i  = R(x_i) - R(y_i)~~~\textrm{(Differenz der Rangplätze)}$$
 
 # VL 9 Bivariate Statistik
 ## PRE Maße 
-
+### Lambda
+Lambda wird für nominale und ordinale Skalenniveaus verwendet.
 Mit Prozenten und Mittelwerten kann eine Vorhersagee für eine Variable formuliert werden. Um zu bestimmen ob sich die Vorhersage verbessert, wenn eine zweite Variable mit einbezogen wird kann durch PRE-Maße getestet werden. Je stärker die beiden Variablen zusammenhängen, desto besser wird die Vorhersage. $\text{E}$ steht für den Fehler bzw. die Ungenauigkeit der Vorhersage. 
 
 $$
 \lambda = \frac{\text{E}_1 - \text{E}_2}{\text{E}_1}
 $$
 $$
-\text{E}_1 = 1- \frac{h_{\text{Modal}}}{n}
+\text{E}_1 = 1- \frac{H_{\text{Modal}}}{n}
 $$
+
 ::: {.callout-note collapse="true"}
-### Erklärung der Formel
+### Erklärung der Formel [Teil 1]
 Für die "Hauptvariable 1" ist die beste Vorhersage der Prozentuale Anteil der häufigsten Kategorie ($\frac{h_{\text{Modal}}}{n}$). Die häufigste Kategorie wird _Modalkategorie_ genannt (vgl. Modus). Beispiel: Wenn 9 von 10 Zahnärzten eine Zahnpasta empfehlen, gehört ein bisher unbekannter 11. Arzt zu einer Wahrscheinlichkeit von 90% zur Gruppe die die Zahnpaste empfiehlt. 
 Der Fehler bei einer Vorhersage ist dann die Wahrscheinlichkeit, dass die Vorhersage auf Basis der Modalkateogorie falsch ist - also der 10%ige Fall eintritt, dass der 11. Arzt die Zahnpaste nicht empfielt($1-0.9=0.1$). 
 :::
 
-Wenn nun eine zweite Variable mit in die Vorhersage einbezogen werden soll 
+$$
+\text{E}_2 = \sum^{J}_{j=1}\frac{H_j}{n}(1-\frac{H_{Mj}}{H_j})
+$$
 
-> [Link zu den Tutoriumsfolien mit kompletter Erklärung](Pre/slides.html)
+::: {.callout-note collapse="true"}
+### Erklärung der Formel [Teil 2]
+Wenn nun eine zweite Variable mit in die Vorhersage einbezogen werden soll, ist die beste Vorhersage nichtmehr mit den Gesamtprozenten sondern deren Überschneidungen zu rechnen. Beispiel: Statt nur auf Basis der Ärzte zu rechnen kann hinzugezogen werden, ob ein Arzt die Zahnpasta selbst nutzt. Wie vorher berechnen wir mit $1-\frac{H}{\text{irgendwas}}$ den Schätzfehler in Prozent. Danach wird der Fehler mit den Zeilenprozenten gewichtet.   
+
+| Nutzt Zahnpasta selbst? | Empfiehlt Zahnpasta | Empfiehlt Zahnpasta nicht | Summe |
+|-------------------------|---------------------|---------------------------|-------|
+| Ja                      | 7                   | 0                         | 7     |
+| Nein                    | 2                   | 1                         | 3     |
+| **Summe**               | **9**               | **1**                     | **10**|
+
+$$
+\text{E}_2 = \frac{7}{10}(1-\frac{7}{7}) + \frac{3}{10}(1-\frac{2}{3}) = 0,1
+$$
+
+
+$\text{E}_1$ und $\text{E}_2$ müssen nun nur noch in die $\lambda$ Formel eingesetzt werden.
+
+$$
+\lambda = \frac{0,1 - 0,1}{0,1} = \frac{0}{0,1} = 0
+$$
+Die Vorhersage wird nicht verbessert $\Rightarrow$ es gibt keinen Zusammen zwischen den Variablen.
+:::
+
+### Eta-Quadrat
+$\eta^2$ wird für nominale und metrische Skalenniveaus verwendet. Die Logik ist dieselbe wie bei $\lambda$, nur, dass der Fehler für metrische Variablen durch die Quadratsumme der Abstände zum Mittelwert berechnet wird (vgl. Varianz $\Rightarrow$ je kleiner die Varianz, desto genauer der Mittelwert als Vorhersage).
+
+$$
+\lambda = \frac{\text{QS}_{\text{gesamt}} - \text{QS}_{\text{innerhalb}}}{\text{QS}_{\text{gesamt}}}
+$$
+$$
+\text{QS}=\sum(\text{Wert}_i-\text{Mittelwert})^2
+$$
+
+::: {.callout-note collapse="true"}
+### Erklärung
+$\text{QS}_gesamt$ berechnet sich aus der Quadratsumme für die metrische Variable alleine. 
+
+
+Um $\text{QS}_innerhalb$ zu berechnen müssen wir die Fälle durch hinzunahme der nominalen Variable in mehrere Gruppen unterteilen. Für jede Gruppe muss nun einzeln nocheinmal die Quadratsumme berechnet werden und das Ergebnis aller Gruppen zusammengerechnet werden. 
+
+Ein Beispiel findet sich in den Tutoriumsfolien ab Folie 17.
+:::
+
+
+> [Link zu den Tutoriumsfolien mit ausführlicher Erklärung und Beispielen](Pre/slides.html)
+
 
 ## Korrelation
 ### Kovarianz 
 
 $$\text{cov}(X,Y) = \frac{\sum_{i=1}^{n} (x_i - \bar{x}) (y_i - \bar{y})}{n}$$
+
 - gemeinsame Abweichung von den Mittelwerten
+
 - positiv, wenn x und y beide in dieselbe Richtung abweichen 
   - $x$ unter $\bar{x}$ und gleichzeitig $y$ auch unter $\bar{y}$ ODER $x$ über $\bar{x}$ und gleichzeitig $y$ auch über $\bar{y}$
+
 - negativ, wenn x und y beide gleichzeitig in unterschiedliche Richtungen abweichen 
   - $x$ unter $\bar{x}$ und gleichzeitig $y$ über $\bar{y}$ ODER $x$ über $\bar{x}$ und gleichzeitig $y$ unter $\bar{y}$
+
 - Null, wenn Abweichungen nicht miteinander korrelieren
   - Abweichungsrichtungen von x und y unabhängig voneinander
 
 
-**Problem:**
-- abhängig von den Maßeinheiten der Merkmale
+::: {.callout-important}
+### Problem:
+$\text{cov}$ ist abhängig von den Maßeinheiten der Merkmale
+:::
 
 ### Pearson's r
 
@@ -377,15 +438,18 @@ $$r = \frac{\text{cov}(x; y)}{s_x \cdot s_y} = \frac{\sum_{i=1}^{n} (x_i - \bar{
   - 0: kein Zusammenhang
   - 1: stark positiver Zusammenhang
 
-
+::: {.callout-tip collapse="true"}
+###  Browserspiel zum Korrelationen schätzen
+[Guess-The-Correlation Game](https://www.guessthecorrelation.com/#)
+:::
 # VL 10 Überleitung Inferenz
 
-| .                    | Stichprobe        | Wahrscheinlichkeitsverteilungen | Grundgesamtheit              |
-|----------------------|-------------------|--------------------------------|-------------------------------|
-| **Kennwerte**        | **Parameter**     | **Parameter**                  | **Parameter**                 |
-| *Mittelwert*         | \(\bar{x}\)       | Erwartungswert \(\mu\)         | Mittelwert \(\mu\)            |
-| *Standardabweichung* | \(s\)             | Standardabweichung \(\sigma\)  | Standardabweichung \(\sigma\) |
-| Varianz              | \(s^2\)           | Varianz \(\sigma^2\)           | Varianz \(\sigma^2\)          |
+|                      | Stichprobe      | Wahrscheinlichkeitsverteilungen | Grundgesamtheit             |
+|----------------------|-----------------|---------------------------------|-----------------------------|
+| **Kennwerte**        | **Parameter**   | **Parameter**                   | **Parameter**               |
+| *Mittelwert*         | $\bar{x}$       | Erwartungswert $\mu$            | Mittelwert $\mu$            |
+| *Standardabweichung* | $s$             | Standardabweichung $\sigma$     | Standardabweichung $\sigma$ |
+| Varianz              | $s^2$           | Varianz $\sigma^2$              | Varianz $\sigma^2$          |
 
 ## Normalverteilung
 - Können verschiedene Mittelwerte und Standardabweichungen besitzen
@@ -399,7 +463,8 @@ $$\mathcal{N}(\mu, \sigma^2)$$
   - 1 = 1 Standardabweichung über 0
   - -2 = 2 Standardabweichungen unter 0
 $$\mathcal{N}(0, 1)$$ 
-![](1_Standardnormalverteilung.png|80)
+
+![](media/1_Standardnormalverteilung.png)
 
 ## Gesetz der großen Zahlen
 > Je größer die Stichprobe ist, desto geringer wird der Standardfehler ($\sigma_{\bar{x}}=\frac{\sigma}{\sqrt{n}}$) 
@@ -411,10 +476,10 @@ Es liegt eine [unabhängige und identisch verteilte Zufallsvariable](https://de.
 **$\Rightarrow$ Aussagen über Grundgesamtheit nur über Stichproben möglich!!**
 
 
-![](1_man.png|80)
+![](media/1_man.png)
 
 ### Hinführung: Fläche unter der Kurve
-![](1_animation.gif)
+![](media/1_animation.gif)
 In der Animation wird pro Zeitschritt der Wert mit der nächsten ID generiert. Auf der rechten Seite werden die Antworten (nur ganze Zahlen zwischen 1 und 15) diskret dargestellt. Wenn wir nun wissen möchten wie viele Personen Antwort 8 gegeben haben reicht es die gestapelten "Blöcke" des Balkendiagrams zu zählen. Wenn wir wissen möchten wie viele Personen eine Antwort zwischen 5 und 9 gegeben haben müssen wie alle Blöcke zwischen 5 und 9 zählen. 
 
 
@@ -426,8 +491,8 @@ Wozu? Wir wissen, dass sich eine unabhängig und identisch verteilte Stichprobe 
 In der Z-Tabelle ist die Fläche in Prozent eingetragen, die links vom an den Achsen zu findenden Z-Wert liegt. 
 Links des Z-Wertes $-1,28$ befinden sich circa $10\%$ der Fläche unter der Normalverteilung.
 
-![](1_normaldistribution.png|77)
-![](1_Z-Tabelle.png|80)
+![](media/1_normaldistribution.png)
+![](media/1_Z-Tabelle.png)
 
 ### Rohwert und Z-Wert umrechnen
 Um Aussagen über bestimmte Variablen zu treffen müssen wir zwischen Rohwerten und Z-Werten übersetzen können.
@@ -478,21 +543,43 @@ Um Aussagen über bestimmte Variablen zu treffen müssen wir zwischen Rohwerten 
 ---
 
 # Aufgaben
-> 💡Lösungen können per Klick auf das Dreieck eingeblendet werden
+
 ## VL 1
-Gib das Skalenniveau der folgenden Variable an: 
-![Selbstvertrauen: niedrig, mittel, hoch]{Ordinal <br> geordnet, Abstände nicht quantifiziert (können unterschiedlich sein)}
-![Einkommen]{Ratio <br> geordnete konstante Abstände, Nullpunkt ist natürlich}
-![Jahreszahl]{Intervall <br>(geordnet, circa konstante Abstände aber kein antürlicher Nullpunkt)}
+### Skalenniveaus und Variablen
+Gib das Skalenniveau der folgenden Variablen an: 
+
+::: {.callout-note collapse="true"}
+### Selbstvertrauen: niedrig, mittel, hoch
+Ordinal, denn geordnet, Abstände nicht quantifiziert (können unterschiedlich sein)
+:::
+
+::: {.callout-note collapse="true"}
+### Einkommen
+Ratio, denn geordnete konstante Abstände, Nullpunkt ist natürlich
+:::
+
+::: {.callout-note collapse="true"}
+### Jahreszahl
+Intervall, denn (geordnet, circa konstante Abstände aber kein antürlicher Nullpunkt)
+:::
 
 Sind die folgende Variablen diskret oder stetig?
-![Exakte Zeit eines 100m Läufers]{Stetig <br> kann immer weiter verfeinert werden}
-![Anzahl der Kinder]{Diskret <br>(es gibt keine halben Kinder)}
 
+::: {.callout-note collapse="true"}
+### Exakte Zeit eines 100m Läufers
+Stetig, denn kann immer weiter verfeinert werden
+:::
+
+::: {.callout-note collapse="true"}
+### Anzahl der Kinder
+Diskret, denn (es gibt keine halben Kinder)
+:::
 
 ## VL 2
 
-politisches Interesse Allbus:   
+### Häufigkeiten
+politisches Interesse Allbus: 
+
 | Kategorie                     | $Hx_k$ | $hx_k$ |$hx_k\cdot100$| kumulierte prozentuale Häufigkeit |
 |-------------------------------|--------|--------|--------------|-----------------------------------|
 | sehr stark                    | 425    | 0,122  | 12,2         | 12,2                              |
@@ -502,127 +589,269 @@ politisches Interesse Allbus:
 | überhaupt nicht               | 186    | 0,053  | 5,3          | 100                               |
 | **Gesamt**                    | 3490   | 1,000  | 100          |                                   |
 
-![Wie viele Menschen sind mindestens stark politisch interessiert?]{$37,3\%$}
-![Wie hoch ist der prozentuale Anteil der Personen, die weniger als inkl. _mittel_ interessiert sind?]{$100\%-37,3\%=62,7\%$}
-![Wie hoch ist der prozentuale Anteil der Personen, _stark, mittel, wenig_ angekreuzt haben?]{$94,7\%-12,2\%=82,5\%$}
+::: {.callout-note collapse="true"}
+### Wie viele Menschen sind mindestens stark politisch interessiert?
+$37,3\%$
+:::
+
+::: {.callout-note collapse="true"}
+### Wie hoch ist der prozentuale Anteil der Personen, die weniger als inkl. _mittel_ interessiert sind?
+
+$100\%-37,3\%=62,7\%$
+:::
+
+::: {.callout-note collapse="true"}
+### Wie hoch ist der prozentuale Anteil der Personen, _stark, mittel, wenig_ angekreuzt haben?
+$94,7\%-12,2\%=82,5\%$
+:::
 
 
-- ![$A = \sum_{i=1}^{n} x_i$]{$=14$}
-- ![$B = \sum_{i=2}^{4} x_i$]{$=9$}
-- ![$C = \sum x_i$]{$14$}
-- ![$D = \sum_{i=1}^{n} x_i^2$]{$=48$}
-- ![$E = \left( \sum_{i=1}^{n} x_i \right)^2$]{$=14^2$}
-- ![$F = \left( \sum_{i=1}^{n} x_i \right) - 1$]{$=13$}
-- ![$G = \sum_{i=1}^{n} (x_i - 1)$]{$=9$}
-- ![$H = \sum_{i=1}^{n} (x_i - 1)^2$]{$=25$}
-- ![$I = \left( \sum_{i=1}^{n} (x_i - 1) \right)^2$]{$=81$}
-- ![$J = \frac{\sum_{i=1}^{n} (x_i - 1)}{n}$]{$=\frac{9}{5}=1,8$}
-- ![$K = \frac{\sum_{i=1}^{n} (x_i - 2)^2}{n}$]{$=\frac{12}{5}$}
+### Summen
+
+::: {.callout-note collapse="true"}
+### $\sum_{i=1}^{n} x_i$
+$=14$
+:::
+
+::: {.callout-note collapse="true"}
+### $\sum_{i=2}^{4} x_i$
+$=9$
+:::
+
+::: {.callout-note collapse="true"}
+### $\sum x_i$
+$14$
+:::
+
+::: {.callout-note collapse="true"}
+### $\sum_{i=1}^{n} x_i^2$
+$=48$
+:::
+
+::: {.callout-note collapse="true"}
+### $\left( \sum_{i=1}^{n} x_i \right)^2$
+$=14^2$
+:::
+
+::: {.callout-note collapse="true"}
+### $\left( \sum_{i=1}^{n} x_i \right) - 1$
+$=13$
+:::
+
+::: {.callout-note collapse="true"}
+### $\sum_{i=1}^{n} (x_i - 1)$
+$=9$
+:::
+
+::: {.callout-note collapse="true"}
+### $\sum_{i=1}^{n} (x_i - 1)^2$
+$=25$
+:::
+
+::: {.callout-note collapse="true"}
+### $\left( \sum_{i=1}^{n} (x_i - 1) \right)^2$
+$=81$
+:::
+
+::: {.callout-note collapse="true"}
+### $\frac{\sum_{i=1}^{n} (x_i - 1)}{n}$
+$=\frac{9}{5}=1,8$
+:::
+
+::: {.callout-note collapse="true"}
+### $\frac{\sum_{i=1}^{n} (x_i - 2)^2}{n}$
+$=\frac{12}{5}$
+:::
+
 
 
 ## VL 3
-![Berechne den Median für folgende Werte: 5,2,4,4,3,5,8]{4} 
-![Was ist der Modus der folgenden Werte? 3,3,4,4,4,5,5,5,5,2,2,1,1,0]{5}
-![Welche Aussagen können über eine Verteilung mit den folgenden Werten getroffen werden? arithmetisches Mittel = 24; Modus = 32; Median = 27]{rechtssteil/linksschief}
+::: {.callout-note collapse="true"}
+### Berechne den Median für folgende Werte: 5,2,4,4,3,5,8
+4
+::: 
+
+::: {.callout-note collapse="true"}
+### Was ist der Modus der folgenden Werte? 3,3,4,4,4,5,5,5,5,2,2,1,1,0
+5
+:::
+
+::: {.callout-note collapse="true"}
+### Welche Aussagen können über eine Verteilung mit den folgenden Werten getroffen werden? arithmetisches Mittel = 24; Modus = 32; Median = 27
+rechtssteil/linksschief
+:::
 
 ## VL 4
-![](1_IQR_1.png|80)
 
-![Ordne die IQRs der Verteilungen nach ihrer Größe]{$IQR_A < IQR_B < IQR_C$<br><br>![](1_IQR_2.png)}
+![](media/1_IQR_1.png)
 
+::: {.callout-note collapse="true"}
+### Ordne die IQRs der Verteilungen nach ihrer Größe
+$$
+IQR_A < IQR_B < IQR_C
+$$
 
-![](1_Zeugnis.png|80)
-![Was ist meine Durchschnittsnote im Fach Deutsch?]{$\frac{10+9+9+9}{4}=9,25$}
-![Wie hoch ist die Standardabweichung meiner Noten im Fach Deutsch?]{**Varianz:**<br>$\frac{(10 - 9,25)^2 + (9 - 9,25)^2 + (9 - 9,25)^2 + (9 - 9,25)^2}{4} = \frac{(0,75)^2 + (-0,25)^2 + (-0,25)^2 + (-0,25)^2}{4}$<br>$= \frac{0,5625 + 0,0625 + 0,0625 + 0,0625}{4} = \frac{0,75}{4}$<br>$= 0,1875$<br>**Standardabweichung:**<br>$\sqrt{0,1875} = 0,433$}
-![Ohne zu rechnen: Liegt der Median meiner Physiknote höher oder tiefer als der Mittelwert? Warum?]{Der Median ist niedriger, weil die 13 Punkte als "Ausreißer" den Mittelwert mit nach oben ziehen. In Verteilungen mit wenigen hohen Werten bevorzugt man deshalb den Median um die "Lage der Verteilung" zu beschreiben.}
+![](media/1_IQR_2.png)
+:::
+
+![](media/1_Zeugnis.png)
+
+::: {.callout-note collapse="true"}
+### Was ist meine Durchschnittsnote im Fach Deutsch?
+$\frac{10+9+9+9}{4}=9,25$
+:::
+
+::: {.callout-note collapse="true"}
+### Wie hoch ist die Standardabweichung meiner Noten im Fach Deutsch?
+**Varianz:**
+$\frac{(10 - 9,25)^2 + (9 - 9,25)^2 + (9 - 9,25)^2 + (9 - 9,25)^2}{4} = \frac{(0,75)^2 + (-0,25)^2 + (-0,25)^2 + (-0,25)^2}{4}$
+$= \frac{0,5625 + 0,0625 + 0,0625 + 0,0625}{4} = \frac{0,75}{4}$
+$= 0,1875$
+
+**Standardabweichung:**
+$\sqrt{0,1875} = 0,433$
+:::
+
+::: {.callout-note collapse="true"}
+### Ohne zu rechnen: Liegt der Median meiner Physiknote höher oder tiefer als der Mittelwert? Warum?
+Der Median ist niedriger, weil die 13 Punkte als "Ausreißer" den Mittelwert mit nach oben ziehen. In Verteilungen mit wenigen hohen Werten bevorzugt man deshalb den Median um die "Lage der Verteilung" zu beschreiben.
+:::
 
 ## VL 5
 
 Gegeben sind eine Obstschüssel voller Äpfel und eine Obstschüssel voller Birnen. Jeder Apfel und jede Birne werden nach Ästhetik auf einer Skala von 1-10 bewertet und die Bewertungen notiert.
 
+**Runde alle Rechnungen auf 2 Nachkommastellen**
 
-| Apfel-ID | Bewertung Äpfel | Birnen-ID | Bewertung Birnen |
-| -------- | --------------- | --------- | ---------------- |
-| 1        | 9               | 1         | 3                |
-| 2        | 7               | 2         | 2                |
-| 3        | 5               | 3         | 8                |
-| 4        | 6               | 4         | 10              | 
-| 5        | 7               | 5         | 1                |
+| Apfel-ID (Apfelnummer) | Bewertung Äpfel |
+|------------------------|-----------------|
+| 1                      | 9               |
+| 2                      | 7               |
+| 3                      | 5               |
+| 4                      | 6               |
+| 5                      | 7               |
 
+| Birnen-ID (Birnennummer) | Bewertung Birnen |
+|--------------------------|------------------|
+| 1                        | 3                |
+| 2                        | 2                |
+| 3                        | 8                |
+| 4                        | 10               |
+| 5                        | 1                |
 
-1. Berechne Durchschnitt und Standardabweichung für Äpfel und Birnen
+**1.** Berechne Durchschnitt und Standardabweichung für Äpfel und Birnen
 
-2. Erstelle einen Zahlenstrahl für die Werte der Äpfel und einen für die Werte der Birnen, markiere auch den Durchschnitt und zeichne das Intervall der Standardabweichung ein.
+::: {.callout-note collapse="true"}
+### Lösung
 
-3. Berechne für jeden Wert der Äpfel und für jeden Wert der Birnen den dazugehörigen Zwert
+$$\bar{x}_{Äpfel} = 6,8$$ $$\bar{x}_{Birnen} = 4,8$$
 
-4. Erstelle nun zwei neue Zahlenstrahle, in der Nähe der ursprünglichen Zahlenstrahlen auf deinem Zettel. Zeichne hier alle Z-Werte ein. 
+$$\sigma_{Äpfel} = \pm 1,33$$ $$\sigma_{Birnen} = \pm 3,54$$
+:::
 
-5. Nun vergleichen wir mal Äpfel mit Birnen: Welche Frucht ist insgesamt am besten bewertet?
-   
+**2.** Erstelle einen Zahlenstrahl für die Werte der Äpfel und einen für die Werte der Birnen, markiere auch den Durchschnitt und zeichne das Intervall der Standardabweichung ein.
 
-- **Runde alle Rechnungen auf 2 Nachkommastellen**
+::: {.callout-note collapse="true"}
+### Lösung
 
-![**Lösung 1**]{
-  $\bar{x}_{Äpfel} = 6,8$ 
+(Der Grüne Punkt markiert die 0, die Standardabweichung ist nicht eingetragen)
 
-  $\bar{x}_{Birnen} = 4,8$
+![](media/1_Strahl1.png){fig-align="center"}
+:::
 
+**3.** Berechne für jeden Wert der Äpfel und für jeden Wert der Birnen den dazugehörigen Zwert
 
-  $\sigma_{Äpfel} = \pm 1,48$
+::: {.callout-note collapse="true"}
+### Lösung
 
-  $\sigma_{Birnen} = \pm 3,96$ 
-}
-![**Lösung 2**]{
-  (Der Grüne Punkt markiert die 0, die Standardabweichung ist nicht eingetragen)
-  ![](1_Strahl1.png|90)
-}
-![**Lösung 3**]{
 | Apfel-ID | Z-Apfel | Birnen-ID | Z-Birnen |
-| -------- | ------- | --------- | -------- |
+|----------|---------|-----------|----------|
 | 1        | 1,48    | 1         | -0,45    |
 | 2        | 0,13    | 2         | -0,71    |
 | 3        | -1,21   | 3         | 0,81     |
 | 4        | -0,54   | 4         | 1,31     |
 | 5        | 0,13    | 5         | -0,96    |
-}
-![**Lösung 4**]{
-  ![](1_Strahl2.png|90)
-}
-  ![**Lösung 5**]{
-  - Apfel Nummer 1 ist die Frucht, die am weitesten über dem Durchschnitt liegt, da der Z-Wert am höchsten positiv ist.
-  - Der Apfel mit dem höchsten Z-Wert hat einen höheren Z-Wert als die Birne mit dem höchsten Z-Wert. Somit ist der, im Vergleich zu allen anderen Äpfeln, beste Apfel besser als die, im Vergleich zu allen anderen Birnen, beste Birne.  
-}
+:::
+
+**4.** Erstelle nun zwei neue Zahlenstrahle, in der Nähe der ursprünglichen Zahlenstrahlen auf deinem Zettel. Zeichne hier alle Z-Werte ein.
+
+::: {.callout-note collapse="true"}
+### Lösung
+
+![](media/1_Strahl2.png){fig-align="center"}
+
+Durch die Z-Transformation haben sich die Werte verschoben. Der Mittelwert wird immer auf die 0 geschoben. Der Rest der Verteilung wird so "zusammengedrückt" oder "auseinandergezogen", dass die Standardabweichungen auf 1 gesetzt werden. Alle Werte der Verteilung werden relativ dazu angeordnet (Werte die wenig rechts vom Mittelwert lagen liegen wieder wenig rechts vom Mittelwert etc.)
+:::
+
+**5.** Nun vergleichen wir Äpfel mit Birnen: Welche Frucht ist insgesamt am besten bewertet?
+
+::: {.callout-note collapse="true"}
+### Lösung
+
+Apfel Nummer 1 ist die Frucht, die am weitesten über dem Durchschnitt liegt, da der Z-Wert am höchsten positiv ist.
+:::
 
 
 ## VL 6
 
-|      .            | Tutorium besucht | Tutorium nicht besucht | Gesamt |
+|                   | Tutorium besucht | Tutorium nicht besucht | Gesamt |
 |-------------------|------------------|------------------------|--------|
 | bestanden         | 9                | 59                     | **68** |
 | nicht bestanden   | 2                | 14                     | **16** |
 | **Gesamt**        | **11**           | **73**                 | **84** |
 
-![Wie hoch ist der relative Anteil aller eingeschriebenen Studierenden die das Tutorium nicht besucht und die Klausur nicht
-bestanden haben?]{$\frac{14}{84}=16,6\%$}
-![Wie hoch ist der relative Anteil aller eingeschriebenen Studierenden die die Klausur bestanden haben?]{$\frac{68}{84}=80,9\%$}
-![Wie hoch ist der relative Anteil der Tutoriumsbesucher, die die Klausur bestanden haben?]{$\frac{9}{11}=81,8\%$}
-![Wie viel Prozent aller bestehenden Studierenden haben das Tutorium besucht?]{$\frac{9}{68}=13,2\%$}
+::: {.callout-note collapse="true"}
+### Wie hoch ist der relative Anteil aller eingeschriebenen Studierenden die das Tutorium nicht besucht und die Klausur nicht bestanden haben?
+$\frac{14}{84}=16,6\%$
+:::
 
+::: {.callout-note collapse="true"}
+### Wie hoch ist der relative Anteil aller eingeschriebenen Studierenden die die Klausur bestanden haben?
+$\frac{68}{84}=80,9\%$
+:::
 
-Ergänze folgende Kreuztabelle ([Statistisches Bundesamt](https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Gesundheit/Gesundheitszustand-Relevantes-Verhalten/Tabellen/liste-rauchverhalten.html#119170)): 
+::: {.callout-note collapse="true"}
+### Wie hoch ist der relative Anteil der Tutoriumsbesucher, die die Klausur bestanden haben?
+$\frac{9}{11}=81,8\%$
+:::
+
+::: {.callout-note collapse="true"}
+### Wie viel Prozent aller bestehenden Studierenden haben das Tutorium besucht?
+$\frac{9}{68}=13,2\%$
+:::
+
+---
+
+Ergänze folgende Kreuztabelle ([Statistisches Bundesamt](https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Gesundheit/Gesundheitszustand-Relevantes-Verhalten/Tabellen/liste-rauchverhalten.html#119170)):
+
 | Geschlecht x Rauchen | Raucher | Nichtraucher | Gesamt  |
 |----------------------|---------|--------------|---------|
 | männlich             | 5059    | A            | 22 684  |
 | weiblich             | B       | C            | 23 547  |
 | Gesamt               | 8 738   | D            | 46 231  |
 
-![A]{$22684 - 5059 = 17625$}
-![B]{$8738 - 5059 = 3679$}
-![C]{$23547 - 3679 = 19868$}
-![D]{$17625 + 19868 = 37493$}
+::: {.callout-note collapse="true"}
+### A
+$22684 - 5059 = 17625$
+:::
+::: {.callout-note collapse="true"}
+### B
+$8738 - 5059 = 3679$
+:::
+::: {.callout-note collapse="true"}
+### C
+$23547 - 3679 = 19868$
+:::
+::: {.callout-note collapse="true"}
+### D
+$17625 + 19868 = 37493$
+:::
 
 ## VL 7
+
+### Aufgabe aus dem Tutorium
+
+Beobachtete Werte:
 
 | Geschlecht x Rauchen | Raucher  | Nichtraucher | Gesamt      |
 |----------------------|----------|--------------|-------------|
@@ -630,7 +859,6 @@ Ergänze folgende Kreuztabelle ([Statistisches Bundesamt](https://www.destatis.d
 | weiblich             | 3 679    | 19 868       | **23 547**  |
 | **Gesamt**           | **8 738**| **37 493**   | **46 231**  |
 
-![**1. Berechne und interpretiere $\chi^2$**]{
 
 Erwartete Werte:
 
@@ -640,34 +868,108 @@ Erwartete Werte:
 | weiblich             | *4 450,557* | *19 096,44*   | **23 547** |
 | **Gesamt**           | **8 738**   | **37 493**    | **46 231** |
 
-$$\chi^2 = \sum_{i=1}^{k} \sum_{j=1}^{m} \frac{(f_{b_{ij}} - f_{e_{ij}})^2}{f_{e_{ij}}}$$ 
-$$= \frac{(5059 - 4287,443)^2}{4287,443} + \frac{(17625-18396,56)^2}{18396,56} + \frac{(3679 - 4450,557)^2}{4450,557} + \frac{(19868 - 19096,44)^2}{19096,44}$$ 
-$$= 138,847 + 32,360 + 133,759 + 31,174$$ 
-$$= 336,14$$ 
+::: {.callout-note collapse="true"}
+### 1. Berechne und interpretiere $\chi^2$
+$$
+\chi^2 = \sum_{i=1}^{k} \sum_{j=1}^{m} \frac{(f_{b_{ij}} - f_{e_{ij}})^2}{f_{e_{ij}}}
+$$ 
+$$
+= \frac{(5059 - 4287,443)^2}{4287,443} + \frac{(17625-18396,56)^2}{18396,56} + \frac{(3679 - 4450,557)^2}{4450,557} + \frac{(19868 - 19096,44)^2}{19096,44}
+$$ 
+$$
+= 138,847 + 32,360 + 133,759 + 31,174
+$$ 
+$$
+= 336,14
+$$ 
 
 - Im Verhältnis zur Größe der Fallzahl ist der Wert ziemlich gering. $\rightarrow$ kein Zusammenhang
+:::
 
-}
+::: {.callout-note collapse="true"}
+### 2. Berechne und interpretiere $\phi$
 
-![**2. Berechne und interpretiere $\phi$**]{
-$$\phi = \sqrt{\frac{336,14}{46231}} = 0,085$$ 
+$$
+\phi = \sqrt{\frac{336,14}{46231}} = 0,085
+$$ 
 - Der Wert liegt nahe an 0 $\rightarrow$ kein Zusammenhang
-}
+:::
 
-![**3. Berechne $C$ und $C_max$**]{
+::: {.callout-note collapse="true"}
+### 3. Berechne $C$ und $C_{\text{max}}$
+
 R = 2 
-$$C = \sqrt{\frac{\chi^2}{\chi^2 + n}} = \sqrt{\frac{336,14}{336,14 + 46231}} = 0,085$$ 
-$$C_{\text{max}} = \sqrt{\frac{R - 1}{R}} = \sqrt{\frac{2-1}{2}} = 0,707$$ 
+$$
+C = \sqrt{\frac{\chi^2}{\chi^2 + n}} = \sqrt{\frac{336,14}{336,14 + 46231}} = 0,085
+$$ 
+$$
+C_{\text{max}} = \sqrt{\frac{R - 1}{R}} = \sqrt{\frac{2-1}{2}} = 0,707
+$$ 
 - Verglichen mit dem Maximalen Wert ist C sehr klein $\rightarrow$ kein Zusammenhang
-}
+:::
 
-![**4. Berechne und interpretiere Camer’s V.**]{
-$$\text{Cramer's V} = \sqrt{\frac{\chi^2}{n \cdot (R - 1)}} = \sqrt{\frac{336,14}{46231 \cdot (2 - 1)}} = 0,085$$
+::: {.callout-note collapse="true"}
+### 4. Berechne und interpretiere Camer’s V.
+$$
+\text{Cramer's V} = \sqrt{\frac{\chi^2}{n \cdot (R - 1)}} = \sqrt{\frac{336,14}{46231 \cdot (2 - 1)}} = 0,085
+$$
 
 In Tabelle schauen $\rightarrow$ sehr schwacher Zusammenhang
-}
+:::
+
+### Aufgabe aus der Vorlesung
+
+![](./media/VL_uebung_chiquadrat.png)
+
+::: {.callout-note collapse="true"}
+### Lösung
+$$
+\chi^2 = \sum_{i=1}^{k} \sum_{j=1}^{m} \frac{(f_{bij} - f_{eij})^2}{f_{eij}}
+$$
+$$
+= \frac{(20-103)^2}{103} + \frac{(130-47)^2}{47} + \frac{(1572-1489)^2}{1489} + \frac{(606-689)^2}{689}
+$$
+$$
+= \frac{(-83)^2}{103} + \frac{(83)^2}{47} + \frac{(83)^2}{1489} + \frac{(-83)^2}{689}
+$$
+$$
+= \frac{6889}{103} + \frac{6889}{47} + \frac{6889}{1489} + \frac{6889}{689}
+$$
+$$
+= 66,88 + 146,58 + 4,63 + 10
+$$
+$$
+= 228,09
+$$
+Im Vergleich zu n=2328 ist 228,09 nur ein kleiner Wert und schwer zu Interpretieren.
+:::
+
+
+![](./media/VL_uebung_phi.png)
+
+::: {.callout-note collapse="true"}
+### Lösung
+$$
+\phi = \sqrt{\frac{228,09}{2328}} = 0.31
+$$
+Es handelt sich um einen mittelstarken Zusammenhang. Die fiktiven Personen aus den Beispieldaten können sich demnach eher mit der AFD identifizieren, wenn sie aus Ostdeutschland kommen.
+:::
+
+
+![](./media/VL_uebung_cramerV.png)
+
+::: {.callout-note collapse="true"}
+### Lösung
+Es handelt sich um eine $2\times2$ Tabelle $\Rightarrow R = 2$
+$$
+\text{Cramer's V} = \sqrt{\frac{\chi^2}{n \cdot (R - 1)}} = \sqrt{\frac{228,09}{2328 \cdot (2 - 1)}} = 0.31
+$$
+Auch durch Cramer's V Kategorien-Kontrolle zeigt sich ein mittelstarker Zusammenhang. Die fiktiven Personen aus den Beispieldaten können sich demnach eher mit der AFD identifizieren, wenn sie aus Ostdeutschland kommen.
+:::
+
 
 ## VL 8
+### Übung aus dem Tutorium
 
 In einer kleinen Studie gaben 5 Personen ihre Vorlieben für zwei verschiedene Musikgenres ab. Dabei wurde eine Likertskala mit 1 = "mag ich gar nicht" bis 5 = "mag ich sehr" verwendet.
 
@@ -688,7 +990,9 @@ Berechne Spearman's $\rho$ um die Frage zu beantworten.
 | 6      | 3       | 2       |
 
 
-![**Lösung**]{
+
+::: {.callout-note collapse="true"}
+### Lösung
 
 **1. Ränge zuweisen**
 
@@ -716,17 +1020,105 @@ Berechne Spearman's $\rho$ um die Frage zu beantworten.
 
 **3. Rho berechnen**
 
-$$\rho = 1 - \frac{6 \cdot \sum^{n}_{i=1}{d^2_i}}{n \cdot (n^2-1)}$$
-$$= 1 - \frac{6 \cdot ((-0.5)^2 + (-0.5)^2 + 0^2 + (-3)^2 + 3^2 + 1^2)}{n \cdot (n^2-1)}$$
-$$= 1 - \frac{6 \cdot (0.25     + 0.25     + 0   + 9      + 9   + 1)}{6 \cdot (6^2-1)}$$
-$$= 1 - \frac{117}{6 \cdot (36-1)}$$
-$$= 1 - \frac{117}{6 \cdot 35}$$ $$= 1 - \frac{117}{210}$$ $$= 1 - 0.557 = 0.443$$
+$$
+\rho = 1 - \frac{6 \cdot \sum^{n}_{i=1}{d^2_i}}{n \cdot (n^2-1)}
+$$
+$$
+= 1 - \frac{6 \cdot ((-0.5)^2 + (-0.5)^2 + 0^2 + (-3)^2 + 3^2 + 1^2)}{n \cdot (n^2-1)}
+$$
+$$
+= 1 - \frac{6 \cdot (0.25     + 0.25     + 0   + 9      + 9   + 1)}{6 \cdot (6^2-1)}
+$$
+$$
+= 1 - \frac{117}{6 \cdot (36-1)}
+$$
+$$
+= 1 - \frac{117}{6 \cdot 35}
+$$ 
+$$
+= 1 - \frac{117}{210}
+$$ 
+$$
+= 1 - 0.557 = 0.443
+$$
 
 Mittlere positive Korrelation $\Rightarrow$ *"Wer Genre A mag, mag wahrscheinlich auch Genre B"*
-}
+:::
+
+
+### Übung aus der Vorlesung
+
+![](media/VL_uebung_spearman.png)
+
+::: {.callout-note collapse="true"}
+### Lösung
+## Schritt 1: Ränge zuweisen
+
+Die Ränge sind in den Daten bereits gegeben und lauten wie folgt:
+
+| ID  | Bildung-Rang | Einkommen-Rang |
+|-----|--------------|----------------|
+| 1   | 1            | 2              |
+| 2   | 2,5          | 1              |
+| 3   | 4            | 3,5            |
+| 4   | 2,5          | 3,5            |
+| 5   | 5            | 5              |
+
+## Schritt 2: Differenzen der Ränge berechnen
+
+Die Differenzen zwischen den Rängen für jedes Paar sind:
+
+-   Person 1: $d_1 = 1 - 2 = -1$
+-   Person 2: $d_2 = 2,5 - 1 = 1,5$
+-   Person 3: $d_3 = 4 - 3,5 = 0,5$
+-   Person 4: $d_4 = 2,5 - 3,5 = -1$
+-   Person 5: $d_5 = 5 - 5 = 0$
+
+## Schritt 3: Quadrieren der Differenzen
+
+Die quadrierten Differenzen sind:
+
+-   Person 1: $d_1^2 = (-1)^2 = 1$
+-   Person 2: $d_2^2 = (1,5)^2 = 2,25$
+-   Person 3: $d_3^2 = (0,5)^2 = 0,25$
+-   Person 4: $d_4^2 = (-1)^2 = 1$
+-   Person 5: $d_5^2 = (0)^2 = 0$
+
+## Schritt 4: Summe der quadrierten Differenzen
+
+Die Summe der quadrierten Differenzen ist:
+
+$\sum d_i^2 = 1 + 2,25 + 0,25 + 1 + 0 = 4,5$
+
+## Schritt 5: Spearman's Rho Formel anwenden
+
+Nun setzen wir unsere Werte in die Spearman's Rho Formel ein:
+
+$\rho = 1 - \frac{6 \sum d_i^2}{n(n^2 - 1)}$
+
+wobei $n$ die Anzahl der Beobachtungen ist (in diesem Fall 5):
+
+$\rho = 1 - \frac{6 \cdot 4,5}{5\cdot(5^2 - 1)}$
+
+$\rho = 1 - \frac{27}{5\cdot(24)}$
+
+$\rho = 1 - \frac{27}{120}$
+
+$\rho = 1 - 0.225$
+
+$\rho = 0.775$
+
+Das Endergebnis von 0.775 deutet auf eine mittelere-starke positive Korrelation zwischen Bildung und Einkommen hin.
+
+:::
+
+
+
+
 
 ## VL 9
-**Lambda:**
+### Lambda
+#### Übung aus dem Tutorium
 
 Echte Werte aus dem [European Social Survey 2018](https://ess.sikt.no/en/datafile/b2b0bf39-176b-4eca-8d26-3c05ea83d2cb/270?tab=0&elements=[%2237cbd07f-fa5d-4755-849f-af2099ee6cc4/9%22,%222cd40950-6e2c-42e9-8577-934da1c50972/2%22])
 
@@ -742,22 +1134,161 @@ Abhängige Variable: had a paid job
 | GESAMT               | 7750           | 1528                 | 9278   |
 
 
-![**Lösung**]{
+
+::: {.callout-note collapse="true"}
+### Lösung
 
 $\text{E}_1 = 1 - \frac{7750}{9278} = 0,16$
 
-$\text{E}_2 = (\frac{4016}{9278}(1-\frac{3414}{4016})) + (\frac{5262}{9278}(1-\frac{4336}{5262}))$<br>
+$\text{E}_2 = (\frac{4016}{9278}(1-\frac{3414}{4016})) + (\frac{5262}{9278}(1-\frac{4336}{5262}))$
 $~~~~~= 0,16$
 
 $\text{PRE} = \frac{\text{E}_1 - \text{E}_2}{\text{E}_1} = \frac{0,16 - 0,16}{0,16} = 0$
 
 - Keine Verbesserung der Vorhersage durch die Information über das Geschlecht.
-}
+:::
+
+#### Übung aus der Vorlesung
+
+Sie wollen untersuchen, ob ältere Grundschulkinder mehr Taschengeld bekommen als jüngere. Sie haben dazu bei 10 Kindern die in der Tabelle abgetragenen Summen ermittelt. Zur Prüfung der Hypothese haben Sie zwei Kinder-Gruppen gebildet:
+
+- Gruppe 1: Klasse 1 und 2 
+- Gruppe 2: Klasse 3 und 4
+ 
+ Berechnen Sie Eta-Quadrat und interpretieren Sie das Ergebnis!
+
+
+| ID | Taschengeld pro Monat in Euro | Gruppe |
+|----|-------------------------------|--------|
+| 1  | 3                             | 1      |
+| 2  | 9                             | 2      |
+| 3  | 10                            | 1      |
+| 4  | 4                             | 2      |
+| 5  | 2                             | 1      |
+| 6  | 4                             | 1      |
+| 7  | 3                             | 2      |
+| 8  | 6                             | 1      |
+| 9  | 5                             | 2      |
+| 10 | 6                             | 2      |
+
+::: {.callout-note collapse="true"}
+### Lösung
+### Schritt 1
+Variablen identifizieren: 
+$$
+\text{Gruppe (unabhängig) (x)} \Rightarrow \text{Taschengeld pro Monat in Euro (abhängig) (y)}
+$$
+Arithmetisches Mittel als bester Vorhersagewert, wenn keine
+unabhängige Variable berücksichtigt wird (Quadratsumme gesamt)
+$$
+\bar{y}=\frac{3+9+10+4+2+4+3+6+5+6}{10}=5,2
+$$
+
+### Schritt 2
+#### Quadratsumme gesamt
+
+$$
+\sum(y_i - \bar{y})^2
+$$
+$$
+= (3-5,2)^2 + (9-5,2)^2 + (10-5,2)^2 + (4-5,2)^2 + (2-5,2)^2
+$$
+$$
++ (4-5,2)^2 + (3-5,2)^2 + (6-5,2)^2 + (5-5,2)^2 + (6-5,2)^2
+$$
+$$
+=(-2,2)^2 + (3,8)^2 + (4,8)^2 + (-1,2)^2 + (-3,2)^2
+$$
+$$
++ (-1,2)^2 + (-2,2)^2 + (0,8)^2 + (-0,2)^2 + (0,8)^2
+$$
+$$
+= 4,84 + 14,44 + 23,04 + 1,44 + 10,24 + 1,44 + 4,84 + 0,64 + 0,04 + 0,64
+$$
+$$
+= 61.6
+$$
+
+#### Quadratsumme Gruppe 1
+
+| ID | Taschengeld pro Monat in Euro | Gruppe |
+|----|-------------------------------|--------|
+| 1  | 3                             | 1      |
+| 3  | 10                            | 1      |
+| 5  | 2                             | 1      |
+| 6  | 4                             | 1      |
+| 8  | 6                             | 1      |
+
+$$
+\bar{y} = \frac{3+10+2+4+6}{5}=5
+$$
+$$
+\sum(y_i - \bar{y})^2 = (3-5)^2 + (10-5)^2 + (2-5)^2 + (4-5)^2 + (6-5)^2
+$$
+$$
+= 2^2 + 5^5 + (-3)^2 + (-1)^2 + 1^2
+$$
+$$
+= 4 + 25 + 9 + 1 + 1
+$$
+$$
+= 40
+$$
+
+#### Quadratsumme Gruppe 2
+
+| ID | Taschengeld pro Monat in Euro | Gruppe |
+|----|-------------------------------|--------|
+| 2  | 9                             | 2      |
+| 4  | 4                             | 2      |
+| 7  | 3                             | 2      |
+| 9  | 5                             | 2      |
+| 10 | 6                             | 2      |
+
+$$
+\bar{y} = \frac{9+4+3+5+6}{5} = 5,4
+$$
+$$
+\sum(y_i - \bar{y})^2 = (9-5,4)^2 + (4-5,4)^2 + (3-5,4)^2 + (5-5,4)^2 + (6-5,4)^2
+$$
+$$
+= 3,6^2 + (-1,4)^2 + (-2,4)^2 + (-0,4)^2 + 0,6^2
+$$
+$$
+= 12,96 + 1,96 + 5,76 + 0,16 + 0,36
+$$
+$$
+= 21,2
+$$
+
+#### Quadratsumme innerhalb
+
+$$\text{Quadratsumme}_\text{Innerhalb}=\text{Quadratsumme}_\text{Gruppe 1} + \text{Quadratsumme}_\text{Gruppe 2}$$ 
+$$= 40 + 21,2 = 61.2$$
+
+### Schritt 3
+
+$\eta^2$-Formel anwenden
+
+
+$$
+\eta^2 = \frac{\text{Quadratsumme}_\text{Gesamt}-\text{Quadratsumme}_\text{Innerhalb}}{\text{Quadratsumme}_\text{Gesamt}} = \frac{\text{Quadratsumme}_\text{Zwischen}}{\text{Quadratsumme}_\text{Gesamt}}
+$$
+
+$$
+\eta^2 = \frac{\text{E1}-\text{E2}}{\text{E1}} = \frac{61,6 - (40 + 21,2)}{61,6} = \frac{61,6 - 61,1}{61,6} = \frac{0,5}{61,6} = 0,0081
+$$
+
+Das $\eta^2$ ist sehr, sehr klein $\Rightarrow$
+Es gibt keinen Effekt des Alters auf die höhe des Taschengeldes. 
+:::
 
 ---
 
 
-**Pearson's r:**
+### Pearson's r
+
+#### Übung aus dem Tutorium
 
 Eine Zimmerpflanze steht in einem Zimmer welches durch unterschiedliches heizen Temperaturschwankungen unterliegt. In der folgenden Tabelle sind die Zimmertemperatur in $^\circ\mathrm{C}$ und der Winkel der Pflanzenblätter aufgezeichnet. 
 
@@ -774,46 +1305,118 @@ Berechne dazu den Pearson Korrelationskoeffizienten.
 |     14             |     23 |
 |     16             |     28 |
 
-![**Lösung**]{
+::: {.callout-note collapse="true"}
+### Lösung
 
-$$r = \frac{\sum (x_i - \bar{x})\cdot(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \cdot \sum (y_i - \bar{y})^2}}$$
+$$
+r = \frac{\sum (x_i - \bar{x})\cdot(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \cdot \sum (y_i - \bar{y})^2}}
+$$
 Für die Formel werden die Durchschnitte beider Variablen benötigt. 
 
-$$\bar{x} = \frac{15+16+14+14+16}{5} = 15$$
-$$\bar{y} = \frac{56+50+44+23+28}{5} = 40,2$$
+$$
+\bar{x} = \frac{15+16+14+14+16}{5} = 15
+$$
+$$
+\bar{y} = \frac{56+50+44+23+28}{5} = 40,2
+$$
 
 ---
 
 **Nun werden die drei Summen berechnet**
 
 **1.**
-$$\sum (x_i - \bar{x})\cdot(y_i - \bar{y})$$
-$$= (15-15)\cdot(56-40,2) + (16-15)\cdot(50-40,2) + (14-15)\cdot(44-40,2)$$
-$$+ (14-15)\cdot(23-40,2) + (16-15)\cdot(28-40,2)$$
-$$= 0 + 9,8 + (-3,8) + 17,2 + (-12,2)$$
-$$= 11$$
+$$
+\sum (x_i - \bar{x})\cdot(y_i - \bar{y})
+$$
+$$
+= (15-15)\cdot(56-40,2) + (16-15)\cdot(50-40,2) + (14-15)\cdot(44-40,2)
+$$
+$$
++ (14-15)\cdot(23-40,2) + (16-15)\cdot(28-40,2)
+$$
+$$
+= 0 + 9,8 + (-3,8) + 17,2 + (-12,2)
+$$
+$$
+= 11
+$$
 
 
 **2.**
-$$\sum (x_i - \bar{x})^2$$
-$$= (15-15)^2+(16-15)^2+(14-15)^2+(14-15)^2+(16-15)^2$$
-$$= 4$$
+$$
+\sum (x_i - \bar{x})^2
+$$
+$$
+= (15-15)^2+(16-15)^2+(14-15)^2+(14-15)^2+(16-15)^2
+$$
+$$
+= 4
+$$
 
 
 **3.**
-$$\sum (y_i - \bar{y})^2$$
-$$=(56-40,2)^2+(50-40,2)^2+(44-40,2)^2+(23-40,2)^2+(28-40,2)^2$$
-$$=804,8$$
+$$
+\sum (y_i - \bar{y})^2
+$$
+$$
+=(56-40,2)^2+(50-40,2)^2+(44-40,2)^2+(23-40,2)^2+(28-40,2)^2
+$$
+$$
+=804,8
+$$
 
 
 **Nun in die ursprüngliche Formel einsetzen**
-$$r = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \sum (y_i - \bar{y})^2}}$$
-$$=\frac{11}{\sqrt{4\cdot804,8}} = 0,194$$
+$$
+r = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \sum (y_i - \bar{y})^2}}
+$$
+$$
+=\frac{11}{\sqrt{4\cdot804,8}} = 0,194
+$$
 
 Es besteht ein mittelschwacher Zusammenhang.
 
 Die Pflanze wird also leicht von der Zimmertemperatur beeinflusst. Je höher die Temperatur, desto höher ist der Blattwinkel. Die Pflanze scheint also warme Temperaturen zu präferieren.
-}
+:::
+
+#### Übung aus der Vorlesung
+
+![](media/VL_uebung_pearson.png)
+
+
+::: {.callout-note collapse="true"}
+### Lösung - Aufgabe 1
+
+![](media/scatterplot.png){width="1000"}
+:::
+
+::: {.callout-note collapse="true"}
+### Lösung - Aufgabe 2
+
+|         | $x_i$ | $y_i$ | $\bar{x}$ | $\bar{y}$ | $(x_i - \bar{x})$ | $(y_i - \bar{y})$ | $(x_i - \bar{x}) \cdot (y_i - \bar{y})$ | $(x_i - \bar{x})^2$ | $(y_i - \bar{y})^2$ |
+|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|
+| A       | 0     | 2     | 6         | 4         | -6                | -2                | 12                                      | 36                  | 4                   |
+| B       | 10    | 6     | 6         | 4         | 4                 | 2                 | 8                                       | 16                  | 4                   |
+| C       | 4     | 2     | 6         | 4         | -2                | -2                | 4                                       | 4                   | 4                   |
+| D       | 8     | 4     | 6         | 4         | 2                 | 0                 | 0                                       | 4                   | 0                   |
+| E       | 8     | 6     | 6         | 4         | 2                 | 2                 | 4                                       | 4                   | 4                   |
+| **Sum** |       |       |           |           |                   |                   | 28                                      | 64                  | 16                  |
+
+$$
+r = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \sum (y_i - \bar{y})^2}}
+$$
+
+$$
+= \frac{28}{\sqrt{64 \cdot 16}} = \frac{28}{\sqrt{1024}} = 0,875
+$$
+
+:::
+
+::: {.callout-note collapse="true"}
+### Lösung - Aufgabe 3
+
+Die beiden Variablen hängen stark positiv zusammen.
+:::
 
 
 ## VL 10
@@ -823,15 +1426,24 @@ Körpergröße (in cm) mit $\mathcal{N}(175, 5)$
 
 **Wie groß sind 95% aller Personen?**
 
-![Lösung]{
-$$\text{x} = \mu \pm z \cdot \sigma^2$$
+
+::: {.callout-note collapse="true"}
+### Lösung
+
+$$
+\text{x} = \mu \pm z \cdot \sigma^2
+$$
 
 Wir wollen die Mittleren 95% wissen und möchten daher restlichen 5% auf die beiden Enden der Glockenkurve aufteilen:
-$$\frac{0,05}{2}=0,025$$
+$$
+\frac{0,05}{2}=0,025
+$$
 Auf beiden Seiten _schneiden_ wir also $2,5\%$ der Fläche ab. 
 
 Um die Grenzen zu finden, die die mittleren 95% von den Randbereichen trennen berechnen wir:
-$$1-0,025=0,975$$ 
+$$
+1-0,025=0,975
+$$ 
 
 0,975 in Z-Tabelle suchen $\Rightarrow$ Z-Wert: 1,96
 
@@ -841,20 +1453,56 @@ $$1-0,025=0,975$$
 
 95% aller Personen haben eine Körpergröße zwischen 165,2cm und
 184,8cm
-}
+:::
 
 ---
 
-![Wie groß ist die Fläche einer Normalverteilung links des Z-Wertes -1?]{In der Z-Tabelle den Z-Wert -1 suchen ergibt: 0.1587}
+
+::: {.callout-note collapse="true"}
+### Wie groß ist die Fläche einer Normalverteilung links des Z-Wertes -1?
+In der Z-Tabelle den Z-Wert -1 suchen ergibt: 0.1587
+:::
 
 
-![Wie groß ist bei einer Normalverteilung der Flächenanteil
-zwischen den Werten $z=-2$ und $z=2$?]{
+
+::: {.callout-note collapse="true"}
+### Wie groß ist bei einer Normalverteilung der Flächenanteil zwischen den Werten $z=-2$ und $z=2$?
+
 Vorgehen: Die Fläche links von $z=2$ minus die Fläche links von $z=-2$
 
 In der Z-Tabelle nachschauen:
 - $z_{-2} = 0.0228$
 - $z_2 = 0.9772$
-$$0.9772 - 0.0228 = 0,9544$$
+$$
+0.9772 - 0.0228 = 0,9544
+$$
 Der Flächenanteil beträgt $0,9544$ oder auch $95,44\%$.
-}
+:::
+
+
+
+
+
+# Tipps und Extras
+
+::: {.callout-tip collapse="true"}
+### Youtubekanäle
+
+- Khan Academy (z.B. Wann und warum wir bei der Varianz durch (n-1) teilen): [KhanAcademy Videos](https://www.youtube.com/watch?v=0QS4VHPV4JA)
+
+- Ben Lambert (z.B. Kovarianz und Korrelation und Freiheitsgrade): [Ben Lambert Videos](https://www.youtube.com/@SpartacanUsuals/videos)
+
+- ziemlich mathematisch aber gut animiert: 3blue1brown (z.B. dieses Video zum zentralen Grenzwertsatz): [3blue1brown Videos](https://www.youtube.com/watch?v=zeJD6dqJ5lo)
+:::
+
+::: {.callout-tip collapse="true"}
+### Blogs
+
+- Statistics by Jim: [Statistics by Jim](https://statisticsbyjim.com/)
+
+- Statistik Guru: [Statistik Guru](https://statistikguru.de/)
+
+- Philipp Kleers Web-Based-Training zur Vorlesung ist in Stud.IP und ILIAS verlinks
+:::
+
+
