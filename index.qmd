@@ -15,7 +15,7 @@ number-depth: 2
 format:
   html:
     theme: cosmo
-    embed-resources: false
+    embed-resources: true
 ---
 
 
